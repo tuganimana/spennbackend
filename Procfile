@@ -1,1 +1,1 @@
-web: gunicorn spennbackend --log-file -
+web: gunicorn spennbackend.wsgi --log-file -
