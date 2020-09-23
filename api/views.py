@@ -35,9 +35,10 @@ class CreateUserView(APIView):
         serializer = UserSerializerWithToken(data = request.data)
         if serializer.is_valid():
             saved_user = serializer.save()
+            return Response({"created" : "successful", "message" : "Succesfull"})
         else:
             return Response({"response" : "error", "message" : serializer.errors})
-        return Response({"response" : "success", "message" : "Succesfull"})
+        # return Response({"response" : "success", "message" : "Succesfull"})
 
 @api_view(['GET'])
 def get_current_user(request):
