@@ -8,7 +8,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('', views.home,name='home'),
-    ath('moneysendapi/', views.moneysendapi, name='moneysend'),
+    path('moneysendapi/', views.moneysendapi, name='moneysend'),
     path('users/create', CreateUserView.as_view()),
     path('byose/', UserViewSet.as_view()),
 
