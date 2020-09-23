@@ -54,7 +54,7 @@ def moneysendapi(request):
     """
     if request.method == 'GET':
 
-        snippets = Moneysend.objects.filter(agent=request.user).order_by('-id')[:10]
+        snippets = Moneysend.objects.filter().order_by('-id')[:10]
         serializer = MoneSendSerializer(snippets, many=True)
         return Response(serializer.data)
 
