@@ -23,7 +23,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.parsers import FormParser,MultiPartParser
-from rest_framework.decorators import parser_classe
+from rest_framework.decorators import parser_classes
 # Create your views here.
 def home(request):
     return HttpResponse('welcome to SPENN apis gateway')
