@@ -5,6 +5,7 @@ class Moneysend(models.Model):
     sender =models.CharField(max_length=255),
     receiver =models.CharField(max_length=254),
     amount = models.FloatField(),
+    description = models.CharField(max_length=255,default="Payment Processed on")
     paymenton =models.DateTimeField(auto_now=True)
 
 class Profile(models.Model):
