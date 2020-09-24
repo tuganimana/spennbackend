@@ -33,3 +33,8 @@ class Topup(models.Model):
     amount = models.CharField(max_length=255, default=0)
     description = models.CharField(max_length=255,default="Payment Processed on")
     paymenton =models.DateTimeField(auto_now=True)
+
+class Saving(models.Model):
+    sender =models.CharField(max_length=255)   
+    amount = models.CharField(max_length=255, default=0)   
+    paymenton =models.DateTimeField(auto_now=True)

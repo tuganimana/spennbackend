@@ -52,4 +52,10 @@ class TopupsSerializer(serializers.ModelSerializer):
         depth = 1
         fields = '__all__'
 
+class SavingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =Saving
+        depth = 1
+        fields = '__all__'
+
 

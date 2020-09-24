@@ -13,5 +13,6 @@ urlpatterns = [
     path('byose/', UserViewSet.as_view()),
     path('paybillsapi/', views.paybillsapi, name='paybills'),
     path('topupapi/', views.topupapi, name='topup'),
+    path('savingapi/', views.savingapi, name='saving'),
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

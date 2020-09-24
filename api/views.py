@@ -55,7 +55,7 @@ def moneysendapi(request):
     """
     if request.method == 'GET':
 
-        snippets = Moneysend.objects.filter().order_by('-id')[:10]
+        snippets = Moneysend.objects.filter(sender=request.user).order_by('-id')[:10]
         serializer = MoneSendSerializer(snippets, many=True)
         return Response(serializer.data)
 
@@ -83,7 +83,7 @@ def topupapi(request):
     """
     if request.method == 'GET':
 
-        snippets = Topup.objects.filter().order_by('-id')[:10]
+        snippets = Topup.objects.filter(sender=request.user).order_by('-id')[:10]
         serializer = TopupSerializer(snippets, many=True)
         return Response(serializer.data)
 
@@ -103,12 +103,32 @@ def paybillsapi(request):
     """
     if request.method == 'GET':
 
-        snippets = Paybills.objects.filter().order_by('-id')[:10]
+        snippets = Paybills.objects.filter(sender=request.user).order_by('-id')[:10]
         serializer = PaybillsSerializer(snippets, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
         serializer = PaybillsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([])
+def savingapi(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+
+        snippets = Saving.objects.filter(sender=request.user).order_by('-id')[:10]
+        serializer = SavingSerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = SavingSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
