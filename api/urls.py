@@ -11,5 +11,7 @@ urlpatterns = [
     path('moneysendapi/', views.moneysendapi, name='moneysend'),
     path('users/create', CreateUserView.as_view()),
     path('byose/', UserViewSet.as_view()),
+    path('paybillsapi/', views.paybillsapi, name='paybills'),
+    path('topupapi/', views.topupapi, name='topup'),
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

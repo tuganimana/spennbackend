@@ -40,3 +40,16 @@ class MoneSendSerializer(serializers.ModelSerializer):
         depth = 1
         fields = '__all__'
 
+class PaybillsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =Paybills
+        depth = 1
+        fields = '__all__'
+
+class TopupsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =Topup
+        depth = 1
+        fields = '__all__'
+
+

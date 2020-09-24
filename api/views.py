@@ -73,3 +73,43 @@ class UserViewSet(APIView):
         return JsonResponse(serializer.data)
 
     # return JsonResponse(serializer.data, safe=False)
+
+@api_view(['GET', 'POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([])
+def topupapi(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+
+        snippets = Topup.objects.filter().order_by('-id')[:10]
+        serializer = TopupSerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = TopupSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+# @permission_classes([])
+def paybillsapi(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+
+        snippets = Paybills.objects.filter().order_by('-id')[:10]
+        serializer = PaybillsSerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = PaybillsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
