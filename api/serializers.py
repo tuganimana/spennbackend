@@ -46,7 +46,7 @@ class PaybillsSerializer(serializers.ModelSerializer):
         depth = 1
         fields = '__all__'
 
-class TopupsSerializer(serializers.ModelSerializer):
+class TopupSerializer(serializers.ModelSerializer):
     class Meta:
         model =Topup
         depth = 1
